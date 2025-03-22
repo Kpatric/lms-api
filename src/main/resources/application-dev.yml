@@ -3,7 +3,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://109.199.96.127:5432/lms
+    url: jdbc:postgresql://localhost:5432/lms
     username: admin_api
     password: U7AC|bd~>Pr<l49g74*&u#w7~
   jpa:
@@ -40,3 +40,7 @@ scoring:
   client-name: "LMS Service"
   callback-username: scoring-client
   callback-password: scoring123
+
+credable:
+  username: "admin"
+  password: "pwd123"

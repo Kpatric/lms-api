@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  lms-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8585:8585"
+    environment:
+      SPRING_PROFILES_ACTIVE: default
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/lmsdb
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      SPRING_FLYWAY_ENABLED: "true"
+      SPRING_FLYWAY_LOCATIONS: classpath:db/migration
+      SPRING_FLYWAY_URL: jdbc:postgresql://db:5432/lmsdb
+      SPRING_FLYWAY_USER: postgres
+      SPRING_FLYWAY_PASSWORD: postgres
+    command: ["sh", "-c", "./wait-for-it.sh db:5432 -- ./gradlew bootRun"]
+    restart: "no"
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: lmsdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    restart: "always"

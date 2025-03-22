@@ -32,7 +32,7 @@ Loan Management System (LMS) provides micro-loan solutions, seamlessly integrate
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/lms.git
+    git clone https://github.com/Kpatric/lms-api.git
     cd lms
     ```
 
